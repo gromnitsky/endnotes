@@ -1,0 +1,16 @@
+{
+    "name": "endnotes",
+    "version": "0.0.1",
+    "author": "Alexander Gromnitsky",
+    "license": "MIT",
+    "repository": "github:gromnitsky/endnotes",
+    "files": [
+        "endnotes.js"
+    ],
+    "description": "A tiny, vanilla JavaScript popup footnotes library",
+    "keywords": [
+        "footnotes",
+        "endnotes",
+        "popup"
+    ]
+}
