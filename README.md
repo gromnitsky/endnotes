@@ -5,11 +5,13 @@ A tiny, vanilla JavaScript popup footnotes library.
 * No dependencies
 * 3.5KB unminified
 
-Demo: https://gromnitsky.users.sourceforge.net/js/examples/endnotes/
+Demo: https://gromnitsky.users.sourceforge.net/js/examples/endnotes/example.html
 
 ![](example.png)
 
 ## Usage
+
+    $ npm i endnotes
 
 html:
 
