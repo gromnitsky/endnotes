@@ -1,6 +1,6 @@
 {
     "name": "endnotes",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Alexander Gromnitsky",
     "license": "MIT",
     "repository": "github:gromnitsky/endnotes",
@@ -11,6 +11,7 @@
     "keywords": [
         "footnotes",
         "endnotes",
-        "popup"
+        "popup",
+        "vanilla"
     ]
 }
