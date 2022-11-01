@@ -68,6 +68,7 @@ function dialog_create(event) {
     dlg.style.boxShadow = 'rgba(100, 100, 111, 0.5) 0px 7px 14px 0px'
     dlg.style.borderRadius = '5px'
     dlg.style.background = 'white'
+    dlg.style.color = '#191919'
     dlg.style.padding = padding + 'px'
     dlg.style.overflowY = 'auto'
     dlg.style.width = width + 'px'
