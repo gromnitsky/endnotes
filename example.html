@@ -24,7 +24,15 @@
 
 <script type="module">
   import footnotes from './endnotes.js'
-  footnotes('a.footnote')
+  let opt = {
+      before_hook: anchor => {
+          document.querySelector('h1').style.color = 'red'
+      },
+      after_hook: anchor => {
+          document.querySelector('h1').style.color = 'initial'
+      }
+  }
+  footnotes('a.footnote', opt)
 </script>
 
 <h1>Hover/tap on any link</h1>

@@ -46,7 +46,11 @@ function for the data extraction:
 `myfunc` will get 1 argument: a value of `href` attribute of an
 hovered element.
 
-Other possible options: `width` & `height` for the popup window.
+Other possible options:
+
+* `width` & `height` for the popup window;
+* `before_hook` & `after_hook` functions; both get target element as
+  an argument.
 
 ## License
 

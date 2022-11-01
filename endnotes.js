@@ -5,7 +5,9 @@ let opt = {
         let hash = new URL(href).hash
         let ref = document.querySelector(hash)
         return ref?.innerHTML || 'invalid ref'
-    }
+    },
+    before_hook: null,
+    after_hook: null
 }
 
 let id = {
@@ -86,19 +88,23 @@ function dialog_create(event) {
     dlg.innerHTML = opt.ref(event.target.href)
 
     wrapper.addEventListener('mouseout', dialog_remove2)
+
+    if (opt.before_hook) opt.before_hook(event.target)
     document.querySelector('body').appendChild(wrapper)
 }
 
-function dialog_remove() {
+function dialog_remove(event) {
     let dlg = document.querySelector('#' + id.wrapper)
     if (!dlg || dlg.matches(':hover')) return
 
     document.querySelectorAll('#' + id.wrapper).forEach( div => {
         div.remove()
     })
+    if (opt.after_hook) opt.after_hook(event.target)
 }
 
 function dialog_remove2(event) {
+    let removed = false
     document.querySelectorAll('#' + id.wrapper).forEach( div => {
         if (event?.relatedTarget?.closest('#' + id.content)) {
             // do nothing: mouseout event was fired because a cursor
@@ -106,8 +112,10 @@ function dialog_remove2(event) {
             // dialog
         } else {
             div.remove()
+            removed = true
         }
     })
+    if (removed && opt.after_hook) opt.after_hook(event.target)
 }
 
 function debounce(fn, ms = 250) {
