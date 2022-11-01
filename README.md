@@ -2,8 +2,10 @@
 
 A tiny, vanilla JavaScript popup footnotes library.
 
-* No dependencies
-* 3.5KB unminified
+* 0 dependencies
+* 'Intelligent' popup placing
+* before/after hooks
+* ~4KB unminified and < 1 KB minified+gzipped
 
 Demo: https://gromnitsky.users.sourceforge.net/js/examples/endnotes/example.html
 
@@ -51,6 +53,21 @@ Other possible options:
 * `width` & `height` for the popup window;
 * `before_hook` & `after_hook` functions; both get target element as
   an argument.
+
+## Styling
+
+The content of a footnote goes into
+`#footnotes_dialog_12c1b560_content` div.
+
+Some its properties (like `background` & `color`) are inlined by the
+library, thus have the highest specificity. You'll need to use
+`!important` flag to override such values:
+
+~~~
+#footnotes_dialog_12c1b560_content {
+  background: floralwhite !important;
+}
+~~~
 
 ## License
 
