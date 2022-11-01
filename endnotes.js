@@ -33,8 +33,8 @@ function dialog_create(event) {
     let scrollbar = 16 // a guess
     let width_total = width + padding*2 + border*2 + scrollbar
     let height = opt.height
-    let trasparent_top_margin = 20
-    let height_total = height + padding*2 + border*2 + trasparent_top_margin
+    let trasparent_margin = 20
+    let height_total = height + padding*2 + border*2 + trasparent_margin*2
     let x = event.x - width_total/2
     let y = event.y
 
@@ -55,11 +55,13 @@ function dialog_create(event) {
        ||   dlg     ||
        ||           ||
        |+-----------+|
+       | transparent |
        +-------------+
     */
     wrapper.innerHTML = `<div id="${id.content}"></div>`
     let dlg = wrapper.querySelector('#' +id.content)
-    dlg.style.marginTop = trasparent_top_margin + 'px'
+    dlg.style.marginTop = trasparent_margin + 'px'
+    dlg.style.marginBottom = trasparent_margin + 'px'
     dlg.style.border = `1px solid lightgray`
     dlg.style.boxShadow = 'rgba(100, 100, 111, 0.5) 0px 7px 14px 0px'
     dlg.style.borderRadius = '5px'
@@ -73,8 +75,13 @@ function dialog_create(event) {
     if (x < 0) wrapper.style.left = '0px'
     if (window.innerWidth - x < width_total)
         wrapper.style.left = (window.innerWidth - width_total) + 'px'
-    if (window.innerHeight - y < height_total)
-        wrapper.style.top = (window.innerHeight - height_total) + 'px'
+    if (window.innerHeight - y < height_total) {
+        // first, try position the popup above the link
+        wrapper.style.top = (y - height_total) + 'px'
+        // second, if there is no space above, stick it to the bottom
+        if (y - height_total < 0)
+            wrapper.style.top = (window.innerHeight - height_total) + 'px'
+    }
 
     dlg.innerHTML = opt.ref(event.target.href)
 
