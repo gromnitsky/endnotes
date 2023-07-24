@@ -1,5 +1,5 @@
 let opt = {
-    width: 300,
+    width: () => window.innerWidth - 300 < 100 ? window.innerWidth - 60 : 300,
     height: 150,
     ref: href => {
         let hash = new URL(href).hash
@@ -29,7 +29,7 @@ function dialog_create(event) {
     // cursor over a link
     if (!event.target.matches(':hover')) return
 
-    let width = opt.width
+    let width = opt.width()
     let padding = 16
     let border = 1
     let scrollbar = 16 // a guess
@@ -86,7 +86,7 @@ function dialog_create(event) {
             wrapper.style.top = (window.innerHeight - height_total) + 'px'
     }
 
-    dlg.innerHTML = opt.ref(event.target.href)
+    dlg.innerHTML = opt.ref(this.href)
 
     wrapper.addEventListener('mouseout', dialog_remove2)
 
@@ -99,6 +99,7 @@ function dialog_remove(event) {
     if (!dlg || dlg.matches(':hover')) return
 
     document.querySelectorAll('#' + id.wrapper).forEach( div => {
+        if (dlg === event?.relatedTarget) return
         div.remove()
     })
     if (opt.after_hook) opt.after_hook(event.target)
